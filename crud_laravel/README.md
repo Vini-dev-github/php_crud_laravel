@@ -1,4 +1,4 @@
-# CRUD com Laravel 10 – Foco no Controller
+# CRUD com Laravel – Foco no Controller
 
 Este projeto é uma aplicação CRUD completa (Create, Read, Update, Delete) desenvolvida com **Laravel 10**, utilizando os **Resource Controllers** para uma estrutura limpa, escalável e alinhada às boas práticas do framework.
 
