@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public readonly User $user;
+
+    public function __construct()
+    {
+        $this->user = new User();
+    }
+
     public function index()
     {
-        //
+        //$users = $this->user->all();
+        $users = User::all();
+        return view('users', compact('users'));
     }
 
     /**
@@ -41,9 +49,9 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('user_edit', ['user' => $user]);
     }
 
     /**
@@ -51,7 +59,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updated = $this->user->where('id', $id)->updated($request->except(['_token', '_method']));
+
+        if ($updated) {
+            return redirect()->back->with('message', 'Edição feita com sucesso');
+        }
+        return redirect()->back->with('message', 'Erro ao editar');
     }
 
     /**
