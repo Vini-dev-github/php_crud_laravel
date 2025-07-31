@@ -59,12 +59,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $updated = $this->user->where('id', $id)->updated($request->except(['_token', '_method']));
+        $updated = $this->user->where('id', $id)->update($request->except(['_token', '_method']));
 
         if ($updated) {
-            return redirect()->back->with('message', 'Edição feita com sucesso');
+            return redirect()->back()->with('message', 'Edição feita com sucesso');
         }
-        return redirect()->back->with('message', 'Erro ao editar');
+        return redirect()->back()->with('message', 'Erro ao editar');
     }
 
     /**
